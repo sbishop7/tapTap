@@ -15,6 +15,7 @@
 		54E5D4B11F17E61900FF3EF5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54E5D4AF1F17E61900FF3EF5 /* Main.storyboard */; };
 		54E5D4B31F17E61900FF3EF5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 54E5D4B21F17E61900FF3EF5 /* Assets.xcassets */; };
 		54E5D4B61F17E61900FF3EF5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54E5D4B41F17E61900FF3EF5 /* LaunchScreen.storyboard */; };
+		54E5D4BE1F17EF5E00FF3EF5 /* TapTapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E5D4BD1F17EF5E00FF3EF5 /* TapTapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		54E5D4B21F17E61900FF3EF5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		54E5D4B51F17E61900FF3EF5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		54E5D4B71F17E61900FF3EF5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		54E5D4BD1F17EF5E00FF3EF5 /* TapTapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapTapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				54E5D4AB1F17E61900FF3EF5 /* GameScene.swift */,
 				54E5D4AD1F17E61900FF3EF5 /* GameViewController.swift */,
 				54E5D4AF1F17E61900FF3EF5 /* Main.storyboard */,
+				54E5D4BD1F17EF5E00FF3EF5 /* TapTapViewController.swift */,
 				54E5D4B21F17E61900FF3EF5 /* Assets.xcassets */,
 				54E5D4B41F17E61900FF3EF5 /* LaunchScreen.storyboard */,
 				54E5D4B71F17E61900FF3EF5 /* Info.plist */,
@@ -150,6 +153,7 @@
 			files = (
 				54E5D4AC1F17E61900FF3EF5 /* GameScene.swift in Sources */,
 				54E5D4AE1F17E61900FF3EF5 /* GameViewController.swift in Sources */,
+				54E5D4BE1F17EF5E00FF3EF5 /* TapTapViewController.swift in Sources */,
 				54E5D4A61F17E61900FF3EF5 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
