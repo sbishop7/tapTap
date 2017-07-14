@@ -14,22 +14,27 @@ class GameSceneController: UIViewController {
     var score = 0
     @IBOutlet weak var myScoreLabel: UILabel!
     @IBOutlet weak var tapCellsCollection: UICollectionView!
-    
+    @IBOutlet weak var themScoreLabel: UILabel!
+
+    let multipeerService = MultiServiceManager()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tapCellsCollection.delegate = self
         tapCellsCollection.dataSource = self
         tapCellsCollection.isScrollEnabled = false
+
+        multipeerService.delegate = self
     }
-    
-   
 }
 
 extension GameSceneController: TapTapCellDelegate {
     func handleCellTap(withValue value: Int) {
         score += value
         myScoreLabel.text = String(score)
+      
+        multipeerService.send(valueInt: &score)
     }
 }
 
@@ -75,7 +80,20 @@ extension GameSceneController: UICollectionViewDataSource {
     
 }
 
-
+extension GameSceneController: MultiServiceManagerDelegate {
+  func connectedDevicesChanged(manager: MultiServiceManager, connectedDevices: [String]) {
+    OperationQueue.main.addOperation {
+      // self.connectionsLabel.text = "Connections: \(connectedDevices.count)"
+    }
+  }
+  
+  func valueSent(manager: MultiServiceManager, value: Int) {
+    OperationQueue.main.addOperation {
+      // self.changePressedLabel(withValue: value)
+      self.themScoreLabel.text = String(value)
+    }
+  }
+}
 
 
 //func gridRefresh(num: Int) {

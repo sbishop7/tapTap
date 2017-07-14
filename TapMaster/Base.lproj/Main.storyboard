@@ -103,6 +103,7 @@
                     <connections>
                         <outlet property="myScoreLabel" destination="rq2-zN-Nh5" id="8Oh-yF-mAl"/>
                         <outlet property="tapCellsCollection" destination="MQp-1F-Nx6" id="Fe7-uy-Gbb"/>
+                        <outlet property="themScoreLabel" destination="bIq-zO-9oZ" id="2rR-sz-YFf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x9N-yQ-xEP" sceneMemberID="firstResponder"/>

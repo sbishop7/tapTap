@@ -149,7 +149,7 @@
 				TargetAttributes = {
 					54E5D4A11F17E61900FF3EF5 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = NT777CYM8D;
+						DevelopmentTeam = WX7PXSGCZZ;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -323,11 +323,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = NT777CYM8D;
+				DEVELOPMENT_TEAM = WX7PXSGCZZ;
 				INFOPLIST_FILE = TapMaster/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.sethrollsout.TapMaster;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sethrollsout.TapMasterMLH;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -337,11 +337,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = NT777CYM8D;
+				DEVELOPMENT_TEAM = WX7PXSGCZZ;
 				INFOPLIST_FILE = TapMaster/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.sethrollsout.TapMaster;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sethrollsout.TapMasterMLH;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
