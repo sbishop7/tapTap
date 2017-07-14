@@ -20,54 +20,44 @@ protocol MultiServiceManagerDelegate {
 
 class MultiServiceManager : NSObject {
     
-    
     // :::::::::::::::::: DECLARATIONS
     
-    // multipeer identification for this device
-    private let serviceType = "multi-tap"
-    private let myPeerId = MCPeerID(displayName: UIDevice.current.name)
-    
     var delegate : MultiServiceManagerDelegate?
-    
+  
+    // multipeer identification for this device
+    // private let serviceType = "test-tap"
+    private let serviceType = "multi-tap"
+  
+    private let peerId: MCPeerID
+
+    var session : MCSession
+  
     // singletons used for making the connection, check out their delegates
     // for functionality (not all currently being used)
-    private let serviceAdvertiser : MCNearbyServiceAdvertiser
-    private let serviceBrowser : MCNearbyServiceBrowser
-    
-    
+    private var serviceAdvertiser : MCAdvertiserAssistant?
+    let serviceBrowser : MCBrowserViewController!
+  
     // :::::::::::::::::: SETUP
     
     override init(){
-        
-        // instantiate browser and advertiser
-        serviceAdvertiser = MCNearbyServiceAdvertiser(peer: myPeerId, discoveryInfo: nil, serviceType: serviceType)
-        serviceBrowser = MCNearbyServiceBrowser(peer: myPeerId, serviceType: serviceType)
+        peerId = MCPeerID(displayName: UIDevice.current.name)
+        session = MCSession(peer: peerId, securityIdentity: nil, encryptionPreference: .required)
+        serviceAdvertiser = MCAdvertiserAssistant( serviceType: serviceType, discoveryInfo: nil, session: session)
+        serviceBrowser = MCBrowserViewController( serviceType: serviceType, session: session)
+      
         super.init()
-        
-        // setup advertiser
-        serviceAdvertiser.delegate = self
-        serviceAdvertiser.startAdvertisingPeer()
-        
-        // setup browser
-        serviceBrowser.delegate = self
-        serviceBrowser.startBrowsingForPeers()
-        
+
+        session.delegate = self
+        serviceAdvertiser?.start()
     }
-    
+
     deinit {
         // turn off services before the manager instance is deallocated
         // to prevent zombies
-        serviceAdvertiser.stopAdvertisingPeer()
-        serviceBrowser.stopBrowsingForPeers()
+        serviceAdvertiser?.stop()
     }
-    
-    lazy var session : MCSession = {
-        let session = MCSession(peer: self.myPeerId, securityIdentity: nil, encryptionPreference: .required)
-        session.delegate = self
-        return session
-    }()
-    
-    
+  
+  
     // :::::::::::::::::: FUNCTIONALITY
     
     func send(valueInt: inout Int){ // override this function to increase complexity of sent information

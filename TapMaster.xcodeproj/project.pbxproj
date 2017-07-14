@@ -19,6 +19,8 @@
 		C0C6B3C71F182DC500C21A86 /* TapTapCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C6B3C61F182DC500C21A86 /* TapTapCell.swift */; };
 		C0C6B3C91F18373F00C21A86 /* MultiServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C6B3C81F18373F00C21A86 /* MultiServiceManager.swift */; };
 		C0C6B3CB1F18376800C21A86 /* MPCExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C6B3CA1F18376800C21A86 /* MPCExampleViewController.swift */; };
+		E9C1A9521F19454600A8E90E /* LobbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C1A9511F19454600A8E90E /* LobbyViewController.swift */; };
+		E9C1A9551F194BBD00A8E90E /* MPCHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C1A9541F194BBD00A8E90E /* MPCHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		C0C6B3C61F182DC500C21A86 /* TapTapCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapTapCell.swift; sourceTree = "<group>"; };
 		C0C6B3C81F18373F00C21A86 /* MultiServiceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiServiceManager.swift; sourceTree = "<group>"; };
 		C0C6B3CA1F18376800C21A86 /* MPCExampleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPCExampleViewController.swift; sourceTree = "<group>"; };
+		E9C1A9511F19454600A8E90E /* LobbyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LobbyViewController.swift; sourceTree = "<group>"; };
+		E9C1A9541F194BBD00A8E90E /* MPCHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPCHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +77,7 @@
 				C0C6B3CE1F18379800C21A86 /* services */,
 				C0C6B3CD1F18377A00C21A86 /* views */,
 				C0C6B3CC1F18377500C21A86 /* controllers */,
+				E9C1A9531F194BA200A8E90E /* utils */,
 				C0C6B3C31F18292100C21A86 /* SpriteKitStuff */,
 				54E5D4B21F17E61900FF3EF5 /* Assets.xcassets */,
 				54E5D4B41F17E61900FF3EF5 /* LaunchScreen.storyboard */,
@@ -95,6 +100,7 @@
 		C0C6B3CC1F18377500C21A86 /* controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E9C1A9511F19454600A8E90E /* LobbyViewController.swift */,
 				C0C6B3CA1F18376800C21A86 /* MPCExampleViewController.swift */,
 				54E5D4BD1F17EF5E00FF3EF5 /* GameSceneController.swift */,
 			);
@@ -115,6 +121,14 @@
 				C0C6B3C81F18373F00C21A86 /* MultiServiceManager.swift */,
 			);
 			name = services;
+			sourceTree = "<group>";
+		};
+		E9C1A9531F194BA200A8E90E /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				E9C1A9541F194BBD00A8E90E /* MPCHandler.swift */,
+			);
+			name = utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -196,6 +210,8 @@
 				54E5D4AE1F17E61900FF3EF5 /* GameViewController.swift in Sources */,
 				54E5D4BE1F17EF5E00FF3EF5 /* GameSceneController.swift in Sources */,
 				C0C6B3C91F18373F00C21A86 /* MultiServiceManager.swift in Sources */,
+				E9C1A9521F19454600A8E90E /* LobbyViewController.swift in Sources */,
+				E9C1A9551F194BBD00A8E90E /* MPCHandler.swift in Sources */,
 				54E5D4A61F17E61900FF3EF5 /* AppDelegate.swift in Sources */,
 				C0C6B3CB1F18376800C21A86 /* MPCExampleViewController.swift in Sources */,
 				C0C6B3C71F182DC500C21A86 /* TapTapCell.swift in Sources */,

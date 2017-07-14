@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="FI0-yP-kHx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vky-Ri-vji">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -109,6 +109,99 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x9N-yQ-xEP" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-10.4" y="75.112443778110944"/>
+        </scene>
+        <!--Lobby View Controller-->
+        <scene sceneID="LoE-7e-UZV">
+            <objects>
+                <viewController id="vky-Ri-vji" customClass="LobbyViewController" customModule="TapMaster" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ngd-T7-Dhh"/>
+                        <viewControllerLayoutGuide type="bottom" id="sRi-AW-mIv"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cy4-Wn-cSy">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TapMaster" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l3u-SJ-JTf">
+                                <rect key="frame" x="60.5" y="28" width="254" height="61"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="51"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xsM-LL-l22">
+                                <rect key="frame" x="142" y="253.5" width="90" height="50"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="69Z-r9-BDD"/>
+                                    <constraint firstAttribute="width" constant="90" id="vmv-kQ-cxQ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                <state key="normal" title="Host">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="hostButtonPressed:" destination="vky-Ri-vji" eventType="touchUpInside" id="wrF-Kx-H3G"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hua-JK-y3W">
+                                <rect key="frame" x="187" y="333.5" width="0.0" height="0.0"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" id="hfx-EE-mY9"/>
+                                    <constraint firstAttribute="width" id="zwq-7D-eKr"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CHV-9L-lMB">
+                                <rect key="frame" x="142" y="363.5" width="90" height="50"/>
+                                <color key="backgroundColor" white="0.79850962502615797" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="GAH-Rg-aVW"/>
+                                    <constraint firstAttribute="width" constant="90" id="dS0-l3-AKG"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                <state key="normal" title="Join">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="joinButtonPressed:" destination="vky-Ri-vji" eventType="touchUpInside" id="RjQ-2g-KGF"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zyV-TF-SXd">
+                                <rect key="frame" x="142" y="609" width="90" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="90" id="Xdm-Lt-0b1"/>
+                                    <constraint firstAttribute="height" constant="50" id="j3N-Ed-GSc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="15"/>
+                                <state key="normal" title="Play">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="FI0-yP-kHx" kind="presentation" identifier="gameControllerSegue" id="Ipg-xX-fRu"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="CHV-9L-lMB" firstAttribute="centerX" secondItem="cy4-Wn-cSy" secondAttribute="centerX" id="2ID-CG-R2a"/>
+                            <constraint firstItem="Hua-JK-y3W" firstAttribute="top" secondItem="xsM-LL-l22" secondAttribute="bottom" constant="30" id="4pz-Kr-O1m"/>
+                            <constraint firstItem="Hua-JK-y3W" firstAttribute="centerX" secondItem="cy4-Wn-cSy" secondAttribute="centerX" id="5rn-TN-gIp"/>
+                            <constraint firstItem="zyV-TF-SXd" firstAttribute="centerX" secondItem="cy4-Wn-cSy" secondAttribute="centerX" id="ArB-2A-uuW"/>
+                            <constraint firstItem="sRi-AW-mIv" firstAttribute="top" secondItem="zyV-TF-SXd" secondAttribute="bottom" constant="8" symbolic="YES" id="CnD-AQ-kOE"/>
+                            <constraint firstItem="Hua-JK-y3W" firstAttribute="centerY" secondItem="cy4-Wn-cSy" secondAttribute="centerY" id="G5j-qe-fTe"/>
+                            <constraint firstItem="l3u-SJ-JTf" firstAttribute="centerX" secondItem="cy4-Wn-cSy" secondAttribute="centerX" id="JrD-nJ-Wch"/>
+                            <constraint firstItem="l3u-SJ-JTf" firstAttribute="top" secondItem="Ngd-T7-Dhh" secondAttribute="bottom" constant="8" id="aTZ-9Q-RLK"/>
+                            <constraint firstItem="xsM-LL-l22" firstAttribute="centerX" secondItem="cy4-Wn-cSy" secondAttribute="centerX" id="dTX-Z0-8rs"/>
+                            <constraint firstItem="CHV-9L-lMB" firstAttribute="top" secondItem="Hua-JK-y3W" secondAttribute="bottom" constant="30" id="moW-Iv-yfL"/>
+                            <constraint firstItem="zyV-TF-SXd" firstAttribute="top" relation="greaterThanOrEqual" secondItem="CHV-9L-lMB" secondAttribute="bottom" constant="8" id="ygn-Yo-Mhq"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1Qa-t8-bVM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-771" y="75"/>
         </scene>
     </scenes>
 </document>

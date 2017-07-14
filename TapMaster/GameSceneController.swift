@@ -16,16 +16,17 @@ class GameSceneController: UIViewController {
     @IBOutlet weak var tapCellsCollection: UICollectionView!
     @IBOutlet weak var themScoreLabel: UILabel!
 
-    let multipeerService = MultiServiceManager()
+    var appDelegate: AppDelegate!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+      
+        appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.multipeerService.delegate = self
+
         tapCellsCollection.delegate = self
         tapCellsCollection.dataSource = self
         tapCellsCollection.isScrollEnabled = false
-
-        multipeerService.delegate = self
     }
 }
 
@@ -34,12 +35,8 @@ extension GameSceneController: TapTapCellDelegate {
         score += value
         myScoreLabel.text = String(score)
       
-        multipeerService.send(valueInt: &score)
+        appDelegate.multipeerService.send(valueInt: &score)
     }
-}
-
-extension GameSceneController: UICollectionViewDelegate {
-    
 }
 
 private let itemsPerRow: CGFloat = 4
