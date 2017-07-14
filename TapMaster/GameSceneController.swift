@@ -33,7 +33,7 @@ class GameSceneController: UIViewController {
 }
 
 extension GameSceneController: TapTapCellDelegate {
-    func handleCellTap(withDict dict: NSDictionary) {
+    func handleCellTap(withDict dict: NSMutableDictionary) {
         // events: [], value: Int
         score += dict.value(forKey: "value") as! Int
         myScoreLabel.text = String(score)
@@ -95,7 +95,7 @@ extension GameSceneController: MultiServiceManagerDelegate {
     }
   }
   
-    func dictionarySent(manager: MultiServiceManager, dictionary: NSDictionary) {
+    func dictionarySent(manager: MultiServiceManager, dictionary: NSMutableDictionary) {
         // receiving
         print("received \(dictionary) in dictionarySent function (MSMDelegate)")
     }

@@ -9,7 +9,7 @@
 import UIKit
 
 protocol TapTapCellDelegate {
-    func handleCellTap(withDict: NSDictionary)
+    func handleCellTap(withDict: NSMutableDictionary)
 }
 
 enum CellState {
