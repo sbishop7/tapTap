@@ -55,25 +55,16 @@ class TapTapCell: UICollectionViewCell {
     func determineCellValue(duration: CGFloat) -> Int {
         if duration > 2.0 {
             
-            return randomInt(min: 1, max: 50) / 5
+            return randomInt(min: -1, max: 50) / 5
         }
         if 1.5 < duration && duration <= 2.0 {
-            return randomInt(min: 25, max: 75) / 3
+            return randomInt(min: -25, max: 75) / 3
         }
         if 1.0 < duration && duration <= 1.5 {
-            return randomInt(min: 50, max: 100) / 2
+            return randomInt(min: -50, max: 100) / 2
         }
         if 0.5 <= duration && duration <= 1.0 {
-            return randomInt(min: 100, max: 200)
-        }
-        return value
-    }
-    
-    func randInvert(val: Int) -> Int {
-        var value = val
-        let rand = randomInt(min: 1, max: 100)
-        if rand >= 50 {
-            value = -abs(val)
+            return randomInt(min: -100, max: 200)
         }
         return value
     }
@@ -102,8 +93,7 @@ class TapTapCell: UICollectionViewCell {
     }
     
     func randomInt(min:Int, max:Int) -> Int {
-        let rand = randInvert(val: Int(arc4random_uniform(UInt32(max - min))) + min + 1)
-        return rand
+        return Int(arc4random_uniform(UInt32(max - min))) + min + 1
     }
     
 }
