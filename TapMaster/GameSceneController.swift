@@ -15,6 +15,9 @@ class GameSceneController: UIViewController {
     @IBOutlet weak var myScoreLabel: UILabel!
     @IBOutlet weak var tapCellsCollection: UICollectionView!
     @IBOutlet weak var themScoreLabel: UILabel!
+    
+//    var winConditionScore = 1000
+    // potential implementation for score based win condition
 
     let multipeerService = MultiServiceManager()
 
@@ -30,11 +33,16 @@ class GameSceneController: UIViewController {
 }
 
 extension GameSceneController: TapTapCellDelegate {
-    func handleCellTap(withValue value: Int) {
-        score += value
+    func handleCellTap(withDict dict: NSDictionary) {
+        // events: [], value: Int
+        score += dict.value(forKey: "value") as! Int
         myScoreLabel.text = String(score)
       
         multipeerService.send(valueInt: &score)
+        
+//        if score >= winConditionScore {
+//            // cleanup game
+//        }
     }
 }
 
@@ -87,12 +95,10 @@ extension GameSceneController: MultiServiceManagerDelegate {
     }
   }
   
-  func valueSent(manager: MultiServiceManager, value: Int) {
-    OperationQueue.main.addOperation {
-      // self.changePressedLabel(withValue: value)
-      self.themScoreLabel.text = String(value)
+    func dictionarySent(manager: MultiServiceManager, dictionary: NSDictionary) {
+        // receiving
+        print("received \(dictionary) in dictionarySent function (MSMDelegate)")
     }
-  }
 }
 
 
