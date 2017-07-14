@@ -15,6 +15,9 @@ class GameSceneController: UIViewController {
     @IBOutlet weak var myScoreLabel: UILabel!
     @IBOutlet weak var tapCellsCollection: UICollectionView!
     @IBOutlet weak var themScoreLabel: UILabel!
+    
+//    var winConditionScore = 1000
+    // potential implementation for score based win condition
 
     var appDelegate: AppDelegate!
 
@@ -31,8 +34,10 @@ class GameSceneController: UIViewController {
 }
 
 extension GameSceneController: TapTapCellDelegate {
-    func handleCellTap(withValue value: Int) {
-        score += value
+    func handleCellTap(withDict dict: NSMutableDictionary) {
+        // events: [], value: Int
+        score += dict.value(forKey: "value") as! Int
+        dict.setValue(score, forKey: "score")
         myScoreLabel.text = String(score)
       
         appDelegate.multipeerService.send(valueInt: &score)
@@ -77,6 +82,8 @@ extension GameSceneController: UICollectionViewDataSource {
     
 }
 
+var scoreToBeat = 0
+
 extension GameSceneController: MultiServiceManagerDelegate {
   func connectedDevicesChanged(manager: MultiServiceManager, connectedDevices: [String]) {
     OperationQueue.main.addOperation {
@@ -84,45 +91,21 @@ extension GameSceneController: MultiServiceManagerDelegate {
     }
   }
   
-  func valueSent(manager: MultiServiceManager, value: Int) {
-    OperationQueue.main.addOperation {
-      // self.changePressedLabel(withValue: value)
-      self.themScoreLabel.text = String(value)
+    func dictionarySent(manager: MultiServiceManager, dictionary: NSMutableDictionary) {
+        // receiving
+        print("received \(dictionary.value(forKey: "value") ?? 0) in dictionarySent function (MSMDelegate)")
+        
+        if let otherPersonsScore = dictionary.value(forKey: "score") as? Int {
+            
+            if otherPersonsScore > scoreToBeat {
+                OperationQueue.main.addOperation {
+                    // self.connectionsLabel.text = "Connections: \(connectedDevices.count)"
+                    scoreToBeat = otherPersonsScore
+                    self.themScoreLabel.text = "\(scoreToBeat)"
+                }
+            }
+            
+        }
+        
     }
-  }
 }
-
-
-//func gridRefresh(num: Int) {
-//    // Disable & Hide all buttons while we re-populate the grid
-//    for view in self.view.subviews as [UIView] {
-//        if let node = view as? gameNode {
-//            node.isHidden = true
-//            node.isEnabled = false
-//        }
-//    }
-//    
-//    //Populate the grid & enable nodes
-//    for counter in 1...num {
-//        let pos = getRandGridPosition(i: UInt32(counter))
-//        let node = self.view.viewWithTag(pos) as? gameNode
-//        node?.isEnabled = true
-//        node?.isHidden = false
-//        node?.setTitle(String(describing: type(of: node)), for: .normal)
-//        print(node?.currentTitle!)
-//    }
-//}
-//
-//func getRandGridPosition(i: UInt32) -> Int {
-//    let pos = Int(arc4random_uniform(i) + 1)
-//    return pos
-//}
-//
-//override func didReceiveMemoryWarning() {
-//    super.didReceiveMemoryWarning()
-//    // Dispose of any resources that can be recreated.
-//}
-//
-//override var prefersStatusBarHidden: Bool {
-//    return true
-//}

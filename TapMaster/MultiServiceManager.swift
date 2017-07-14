@@ -13,7 +13,7 @@ import MultipeerConnectivity
 protocol MultiServiceManagerDelegate {
     
     func connectedDevicesChanged(manager: MultiServiceManager, connectedDevices: [String])
-    func valueSent(manager: MultiServiceManager, value: Int)
+    func dictionarySent(manager: MultiServiceManager, dictionary: NSMutableDictionary)
     
 }
 
@@ -72,6 +72,19 @@ class MultiServiceManager : NSObject {
         }
     }
     
+    func send(dictionary : NSMutableDictionary){
+        print("sendValue: \(dictionary) to \(session.connectedPeers.count) peers")
+        
+        if session.connectedPeers.count > 0 {
+            let dictionaryData = NSKeyedArchiver.archivedData(withRootObject: dictionary)
+            do {
+                try self.session.send(dictionaryData, toPeers: self.session.connectedPeers, with: .reliable)
+            } catch let error {
+                print("Error in MPCManager send dictionary function: \(error)")
+            }
+        }
+    }
+    
 }
 
 extension MultiServiceManager: MCNearbyServiceAdvertiserDelegate {
@@ -112,13 +125,18 @@ extension MultiServiceManager: MCSessionDelegate {
     }
     
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
-        // TODO: we should use NSDictionaries to pass this data around
+        // TODO: we should use NSMutableDictionary to pass this data around
         // they have good utility for encoding/decoding to data
         print("did receive data \(data) from peer \(peerID)")
-        let int = data.withUnsafeBytes({ (ptr: UnsafePointer<Int>) -> Int in
-            return ptr.pointee
-        })
-        self.delegate?.valueSent(manager: self, value: int)
+        
+        // let int = data.withUnsafeBytes({ (ptr: UnsafePointer<Int>) -> Int in
+        //     return ptr.pointee
+        // })
+        
+        if let dict = NSKeyedUnarchiver.unarchiveObject(with: data) as? NSMutableDictionary {
+            self.delegate?.dictionarySent(manager: self, dictionary: dict)
+        }
+        
     }
     
     func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
