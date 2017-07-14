@@ -102,7 +102,8 @@ class TapTapCell: UICollectionViewCell {
     }
     
     func randomInt(min:Int, max:Int) -> Int {
-        return randInvert(val: Int(arc4random_uniform(UInt32(max - min))) + min + 1)
+        let rand = randInvert(val: Int(arc4random_uniform(UInt32(max - min))) + min + 1)
+        return rand
     }
     
 }
