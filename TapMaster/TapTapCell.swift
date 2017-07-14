@@ -54,6 +54,7 @@ class TapTapCell: UICollectionViewCell {
     
     func determineCellValue(duration: CGFloat) -> Int {
         if duration > 2.0 {
+            
             return randomInt(min: 1, max: 50) / 5
         }
         if 1.5 < duration && duration <= 2.0 {
@@ -65,21 +66,32 @@ class TapTapCell: UICollectionViewCell {
         if 0.5 <= duration && duration <= 1.0 {
             return randomInt(min: 100, max: 200)
         }
-        return 0
+        return value
+    }
+    
+    func randInvert(val: Int) -> Int {
+        var value = val
+        let rand = randomInt(min: 1, max: 100)
+        if rand >= 50 {
+            value = -abs(val)
+        }
+        return value
     }
     
     func formatTapButton(value: Int, bgColor: CGFloat, bgAlpha: CGFloat, bgImage: UIImage?) {
-        let strokeTextAttributes = [
-            NSStrokeColorAttributeName : UIColor.black,
-            NSForegroundColorAttributeName : UIColor.lightGray,
-            NSStrokeWidthAttributeName : -4.0,
-            NSFontAttributeName : UIFont.boldSystemFont(ofSize: 25)
-            ] as [String : Any]
+        var strokeTextAttributes = [
+            NSStrokeWidthAttributeName: -3.0,
+            NSStrokeColorAttributeName: UIColor.black,
+            NSFontAttributeName: UIFont.boldSystemFont(ofSize: 25)
+            ] as [String: Any]
         if value > 0 {
+            strokeTextAttributes[NSForegroundColorAttributeName] = UIColor.green
+        } else {
+            strokeTextAttributes[NSForegroundColorAttributeName] = UIColor.red
+        }
             let tapButtonNormalAttributedTitle = NSAttributedString(string: String(value),
                                                              attributes: strokeTextAttributes)
             tapButton.setAttributedTitle(tapButtonNormalAttributedTitle, for: .normal)
-        }
         
         tapButton.backgroundColor = UIColor(white: bgColor, alpha: bgAlpha)
         tapButton.setBackgroundImage(bgImage, for: .normal)
@@ -90,7 +102,7 @@ class TapTapCell: UICollectionViewCell {
     }
     
     func randomInt(min:Int, max:Int) -> Int {
-        return Int(arc4random_uniform(UInt32(max - min))) + min + 1
+        return randInvert(val: Int(arc4random_uniform(UInt32(max - min))) + min + 1)
     }
     
 }
