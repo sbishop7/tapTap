@@ -40,7 +40,7 @@ extension GameSceneController: TapTapCellDelegate {
         dict.setValue(score, forKey: "score")
         myScoreLabel.text = String(score)
       
-        appDelegate.multipeerService.send(valueInt: &score)
+      appDelegate.multipeerService.send(dictionary: dict)
     }
 }
 
