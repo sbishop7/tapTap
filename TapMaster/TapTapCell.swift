@@ -28,7 +28,7 @@ class TapTapCell: UICollectionViewCell {
     
     var value: Int = 10
     
-    var tapDictionary = NSDictionary()
+    var tapDictionary = NSMutableDictionary()
     
     var cellState: CellState?
     
@@ -39,12 +39,11 @@ class TapTapCell: UICollectionViewCell {
     func restartTimer() {
         let n: CGFloat = getTimeDuration()
         value = determineCellValue(duration: n)
-        
         tapDictionary.setValue(value, forKey: "value")
         // some sort of buff attribute value
-        // tapDictionary.setValue([], forKey: "events")
+        tapDictionary.setValue([], forKey: "events")
         
-        tapButton.setTitle(String(format: "%.2f", value), for: .normal)
+        formatTapButton(value: value, bgColor: 1.0, bgAlpha: 1.0, bgImage: #imageLiteral(resourceName: "Spaceship"))
         timer = Timer.scheduledTimer(timeInterval: TimeInterval(n), target: self, selector: #selector(timerAction), userInfo: nil, repeats: false)
         
     }
@@ -64,9 +63,26 @@ class TapTapCell: UICollectionViewCell {
             return randomInt(min: 50, max: 100) / 2
         }
         if 0.5 <= duration && duration <= 1.0 {
-            return randomInt(min: 100, max: 200) / 1
+            return randomInt(min: 100, max: 200)
         }
         return 0
+    }
+    
+    func formatTapButton(value: Int, bgColor: CGFloat, bgAlpha: CGFloat, bgImage: UIImage?) {
+        let strokeTextAttributes = [
+            NSStrokeColorAttributeName : UIColor.black,
+            NSForegroundColorAttributeName : UIColor.lightGray,
+            NSStrokeWidthAttributeName : -4.0,
+            NSFontAttributeName : UIFont.boldSystemFont(ofSize: 25)
+            ] as [String : Any]
+        if value > 0 {
+            let tapButtonNormalAttributedTitle = NSAttributedString(string: String(value),
+                                                             attributes: strokeTextAttributes)
+            tapButton.setAttributedTitle(tapButtonNormalAttributedTitle, for: .normal)
+        }
+        
+        tapButton.backgroundColor = UIColor(white: bgColor, alpha: bgAlpha)
+        tapButton.setBackgroundImage(bgImage, for: .normal)
     }
     
     func getTimeDuration() -> CGFloat {
@@ -74,7 +90,7 @@ class TapTapCell: UICollectionViewCell {
     }
     
     func randomInt(min:Int, max:Int) -> Int {
-        return Int(arc4random_uniform(UInt32(max + min))) + min + 1
+        return Int(arc4random_uniform(UInt32(max - min))) + min + 1
     }
     
 }
