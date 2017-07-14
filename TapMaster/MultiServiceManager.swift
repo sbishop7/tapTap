@@ -143,9 +143,10 @@ extension MultiServiceManager: MCSessionDelegate {
         //     return ptr.pointee
         // })
         
-        let dict = NSKeyedUnarchiver.unarchiveObject(with: data) as! NSMutableDictionary
+        if let dict = NSKeyedUnarchiver.unarchiveObject(with: data) as? NSMutableDictionary {
+            self.delegate?.dictionarySent(manager: self, dictionary: dict)
+        }
         
-        self.delegate?.dictionarySent(manager: self, dictionary: dict)
     }
     
     func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {

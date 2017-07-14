@@ -36,13 +36,11 @@ extension GameSceneController: TapTapCellDelegate {
     func handleCellTap(withDict dict: NSMutableDictionary) {
         // events: [], value: Int
         score += dict.value(forKey: "value") as! Int
+        dict.setValue(score, forKey: "score")
         myScoreLabel.text = String(score)
       
-        multipeerService.send(valueInt: &score)
+        multipeerService.send(dictionary: dict)
         
-//        if score >= winConditionScore {
-//            // cleanup game
-//        }
     }
 }
 
@@ -88,6 +86,8 @@ extension GameSceneController: UICollectionViewDataSource {
     
 }
 
+var scoreToBeat = 0
+
 extension GameSceneController: MultiServiceManagerDelegate {
   func connectedDevicesChanged(manager: MultiServiceManager, connectedDevices: [String]) {
     OperationQueue.main.addOperation {
@@ -97,7 +97,20 @@ extension GameSceneController: MultiServiceManagerDelegate {
   
     func dictionarySent(manager: MultiServiceManager, dictionary: NSMutableDictionary) {
         // receiving
-        print("received \(dictionary) in dictionarySent function (MSMDelegate)")
+        print("received \(dictionary.value(forKey: "value") ?? 0) in dictionarySent function (MSMDelegate)")
+        
+        if let otherPersonsScore = dictionary.value(forKey: "score") as? Int {
+            
+            if otherPersonsScore > scoreToBeat {
+                OperationQueue.main.addOperation {
+                    // self.connectionsLabel.text = "Connections: \(connectedDevices.count)"
+                    scoreToBeat = otherPersonsScore
+                    self.themScoreLabel.text = "\(scoreToBeat)"
+                }
+            }
+            
+        }
+        
     }
 }
 
